@@ -1,0 +1,26 @@
+{% assign product_id = block.settings.product.id %}
+<div id="product-custom-fields-{{ product_id }}">
+  Chargement des options...
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/react/umd/react.production.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/react-dom/umd/react-dom.production.min.js" defer></script>
+
+<script>
+  import  '../DynamicFieldsApp.tsx';
+  document.addEventListener("DOMContentLoaded", () => {
+    const productId = "{{ product_id }}";
+    const containerId = `product-custom-fields-${productId}`;
+    renderDynamicFields(productId, containerId);
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Custom Fields",
+  "target": "section",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Product", "autofill": true },
+  ]
+}
+{% endschema %}

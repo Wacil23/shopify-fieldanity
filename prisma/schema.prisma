@@ -1,0 +1,69 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Note that some adapters may set a maximum length for the String type by default, please ensure your strings are long
+// enough when changing adapters.
+// See https://www.prisma.io/docs/orm/reference/prisma-schema-reference#string for more information
+datasource db {
+  provider = "sqlite"
+  url      = "file:dev.sqlite"
+}
+
+model Session {
+  id            String    @id
+  shop          String
+  state         String
+  isOnline      Boolean   @default(false)
+  scope         String?
+  expires       DateTime?
+  accessToken   String
+  userId        BigInt?
+  firstName     String?
+  lastName      String?
+  email         String?
+  accountOwner  Boolean   @default(false)
+  locale        String?
+  collaborator  Boolean?  @default(false)
+  emailVerified Boolean?  @default(false)
+}
+
+model OptionSet {
+  id           String        @id @default(uuid())
+  name         String        // Nom interne visible uniquement par le marchand, ex: "Preuve du dépôt"
+  createdAt    DateTime      @default(now())
+  required     Boolean       @default(false) // L'option est-elle obligatoire ?
+  nickname     String?       // Nom interne (facultatif) pour le marchand
+  description  String?       // Description visible pour les clients
+  inCartName   String?       // Nom affiché dans le panier, ex: "Livraison"
+  products     Product[]     // Produits associés à ce set d'options
+  options      Option[]      // Liste des options dans ce set
+}
+
+model Product {
+  id         String       @id @default(uuid())
+  productId  String       @unique // Marquer productId comme unique
+  optionSets OptionSet[]  // Relation vers les OptionSet associés
+}
+
+model Option {
+  id           String        @id @default(uuid())
+  label        String        // Nom qui sera le label du champ dans le produit
+  type         String        // Type de l'option, ex: "text", "radio", "checkbox", "number"
+  cartName     String?       // Nom à afficher dans le panier sous le produit, ex: "Livraison"
+  optionSetId  String        // Clé étrangère vers l'OptionSet
+  optionSet    OptionSet     @relation(fields: [optionSetId], references: [id]) // Relation avec l'OptionSet
+  values       OptionValue[] // Si l'option nécessite des valeurs (ex: radio ou checkbox)
+}
+
+model OptionValue {
+  id           String    @id @default(uuid())
+  title        String    // Titre de la valeur, ex: "À domicile"
+  addOnPrice   Float?    // Prix additionnel pour cette valeur, ex: "10.90"
+  defaultValue Boolean   @default(false) // Cette valeur est-elle par défaut ?
+  optionId     String    // Clé étrangère vers l'Option
+  option       Option    @relation(fields: [optionId], references: [id]) // Relation avec l'option
+}

@@ -1,0 +1,12 @@
+name = "fieldanity-theme"
+type = "theme"
+
+[blocks]
+  # Configuration d'un bloc nommé `product-custom-fields` pour la personnalisation du produit
+  [blocks.product-custom-fields]
+  name = "Product Custom Fields"
+  target = "product"  # Ce bloc apparaîtra sur les pages produit
+
+[capabilities]
+  # Optionnel : Ajoute la gestion des paramètres de l'extension via les API du thème
+  metafields = ["namespace.key"]

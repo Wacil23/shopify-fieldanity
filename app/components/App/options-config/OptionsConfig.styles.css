@@ -1,0 +1,33 @@
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0.5rem 0;
+}
+.options__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0rem 1rem;
+}
+.options__title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  & .Polaris-Icon {
+    width: 1rem;
+    height: 1rem;
+    font-size: 0.85rem;
+  }
+}
+.options__title-label {
+  font-size: 0.875rem;
+}
+.options__actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  & > svg {
+    cursor: pointer;
+  }
+}
