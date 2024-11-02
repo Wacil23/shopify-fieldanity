@@ -3,7 +3,7 @@
 client_id = "a4322bb1e5dc0ca6061de95a8cb2d358"
 name = "fieldanity"
 handle = "fieldanity"
-application_url = "https://deutschland-distance-cards-vocal.trycloudflare.com"
+application_url = "https://cursor-trap-roses-improve.trycloudflare.com"
 embedded = true
 
 [build]
@@ -17,9 +17,9 @@ scopes = "read_files,read_products,write_files,write_products"
 
 [auth]
 redirect_urls = [
-  "https://deutschland-distance-cards-vocal.trycloudflare.com/auth/callback",
-  "https://deutschland-distance-cards-vocal.trycloudflare.com/auth/shopify/callback",
-  "https://deutschland-distance-cards-vocal.trycloudflare.com/api/auth/callback"
+  "https://cursor-trap-roses-improve.trycloudflare.com/auth/callback",
+  "https://cursor-trap-roses-improve.trycloudflare.com/auth/shopify/callback",
+  "https://cursor-trap-roses-improve.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

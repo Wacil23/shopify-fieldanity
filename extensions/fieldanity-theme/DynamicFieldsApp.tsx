@@ -1,11 +1,11 @@
-import DynamicFields from "app/components/App/dynamic-fields/DynamicFields";
-import React from "react";
+import DynamicFields from "../../app/components/App/dynamic-fields/DynamicFields";
 import { createRoot } from "react-dom/client";
 
 async function renderDynamicFields(productId: string, containerId: string) {
+  console.log("shopify", shopify);
   try {
     const response = await fetch(
-      `https://deutschland-distance-cards-vocal.trycloudflare.com/api/products/${productId}`,
+      `https://cursor-trap-roses-improve.trycloudflare.com/api/products/${productId}`,
     );
     if (!response.ok) throw new Error("Erreur lors de l'appel API");
 
